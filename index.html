@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AquaCulture · blue harvest</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ----- RESET / GLOBAL ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: #e6f7fa;  /* soft aqua mist */
+      color: #0a2a33;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    /* elegant custom font for headings (web safe fallbacks) */
+    h1, h2, h3, .brand {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      letter-spacing: -0.01em;
+    }
+
+    /* ----- COLOR & UTILITY ----- */
+    :root {
+      --deep-sea: #003845;
+      --aqua-core: #1d7e8c;
+      --seafoam: #8fcdd4;
+      --coral-reef: #ff8a6c;
+      --sand: #f9f3e7;
+      --wave-light: #b3e5ed;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ----- HEADER / NAV ----- */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 2rem;
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(29, 126, 140, 0.15);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(0, 40, 50, 0.04);
+    }
+
+    .brand {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--deep-sea);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .brand i {
+      color: var(--aqua-core);
+      font-size: 2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+      font-weight: 500;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #1f4e5a;
+      transition: color 0.2s ease;
+      font-size: 1rem;
+      letter-spacing: 0.3px;
+    }
+
+    .nav-links a:hover {
+      color: var(--coral-reef);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid var(--aqua-core);
+      color: var(--aqua-core);
+      padding: 0.6rem 1.5rem;
+      border-radius: 40px;
+      font-weight: 600;
+      transition: all 0.25s;
+      cursor: pointer;
+    }
+
+    .btn-outline:hover {
+      background: var(--aqua-core);
+      color: white;
+      border-color: var(--aqua-core);
+    }
+
+    /* ----- HERO SECTION (beautiful, calm, immersive) ----- */
+    .hero {
+      position: relative;
+      padding: 5rem 0 6rem 0;
+      background: linear-gradient(145deg, #d4f0f5 0%, #b0dfe8 100%);
+      overflow: hidden;
+    }
+
+    /* subtle wave pattern overlay */
+    .hero::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z" fill="%23e6f7fa" opacity="0.5"/></svg>');
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    .hero-content {
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-text {
+      flex: 1;
+    }
+
+    .hero-text .badge {
+      display: inline-block;
+      background: rgba(255, 138, 108, 0.15);
+      color: #b34529;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem;
+      border-radius: 40px;
+      margin-bottom: 1.8rem;
+      backdrop-filter: blur(2px);
+      border: 1px solid rgba(255, 138, 108, 0.3);
+    }
+
+    .hero-text h1 {
+      font-size: 3.8rem;
+      line-height: 1.15;
+      color: #003845;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+    }
+
+    .hero-text h1 span {
+      color: #1d7e8c;
+      border-bottom: 3px solid #ff8a6c;
+      padding-bottom: 4px;
+    }
+
+    .hero-text p {
+      font-size: 1.2rem;
+      color: #1d5b66;
+      max-width: 550px;
+      margin-bottom: 2.5rem;
+      font-weight: 400;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .btn-primary {
+      background: var(--deep-sea);
+      color: white;
+      border: none;
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.25s;
+      box-shadow: 0 12px 22px -10px rgba(0, 56, 69, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .btn-primary i {
+      font-size: 1rem;
+    }
+
+    .btn-primary:hover {
+      background: #1d7e8c;
+      transform: translateY(-3px);
+      box-shadow: 0 18px 28px -12px rgba(29, 126, 140, 0.5);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 1.5px solid rgba(0, 56, 69, 0.2);
+      color: var(--deep-sea);
+      padding: 0.9rem 2rem;
+      border-radius: 50px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 1rem;
+    }
+
+    .btn-secondary i {
+      color: var(--coral-reef);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.7);
+      border-color: var(--aqua-core);
+    }
+
+    /* hero visual — beautiful "aqua orb" */
+    .hero-visual {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .orb {
+      width: 380px;
+      height: 380px;
+      background: radial-gradient(circle at 30% 30%, #f0fafd, #a7d8e4);
+      border-radius: 50%;
+      position: relative;
+      box-shadow: 0 30px 50px -20px rgba(0, 56, 69, 0.4), 
+                  inset 0 -15px 25px rgba(0, 56, 69, 0.1),
+                  inset 10px -5px 25px #ffffffcc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: float 6s infinite alternate ease-in-out;
+    }
+
+    .orb i {
+      font-size: 9rem;
+      color: #1d7e8c;
+      opacity: 0.25;
+      position: absolute;
+      bottom: 20px;
+      right: 30px;
+      transform: rotate(15deg);
+    }
+
+    .orb::before {
+      content: "🐟";
+      font-size: 7rem;
+      position: absolute;
+      left: 50px;
+      top: 80px;
+      opacity: 0.7;
+      filter: drop-shadow(0 6px 8px rgba(0,40,50,0.15));
+    }
+
+    .orb::after {
+      content: "🐠";
+      font-size: 4rem;
+      position: absolute;
+      right: 50px;
+      bottom: 60px;
+      opacity: 0.6;
+      transform: rotate(-10deg);
+    }
+
+    /* floating micro-animation */
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      100% { transform: translateY(-18px); }
+    }
+
+    /* ----- STATS BAR ----- */
+    .stats {
+      display: flex;
+      justify-content: space-around;
+      background: white;
+      border-radius: 80px;
+      padding: 1.8rem 2rem;
+      margin-top: -2.5rem;
+      position: relative;
+      z-index: 10;
+      box-shadow: 0 20px 35px -10px rgba(0, 56, 69, 0.08);
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
+      border: 1px solid rgba(143, 205, 212, 0.5);
+    }
+
+    .stat-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .stat-icon {
+      font-size: 2.5rem;
+      color: var(--aqua-core);
+    }
+
+    .stat-text h4 {
+      font-size: 1.7rem;
+      color: var(--deep-sea);
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .stat-text p {
+      color: #3f6d7a;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 500;
+    }
+
+    /* ----- SERVICES SECTION ----- */
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-title h2 {
+      font-size: 2.8rem;
+      color: #003845;
+      margin-bottom: 0.8rem;
+    }
+
+    .section-title p {
+      color: #3d6d79;
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+    }
+
+    .services {
+      padding: 5rem 0;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .service-card {
+      background: white;
+      border-radius: 28px;
+      padding: 2.2rem 2rem;
+      box-shadow: 0 12px 30px -8px rgba(0, 56, 69, 0.06);
+      transition: all 0.3s;
+      border: 1px solid rgba(143, 205, 212, 0.3);
+      backdrop-filter: blur(4px);
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 28px 40px -15px rgba(29, 126, 140, 0.2);
+      border-color: var(--seafoam);
+    }
+
+    .service-icon {
+      background: #e4f4f7;
+      width: 70px;
+      height: 70px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.8rem;
+      color: var(--deep-sea);
+      font-size: 2.2rem;
+      transition: 0.25s;
+    }
+
+    .service-card:hover .service-icon {
+      background: var(--deep-sea);
+      color: white;
+    }
+
+    .service-card h3 {
+      font-size: 1.6rem;
+      color: #003845;
+      margin-bottom: 1rem;
+    }
+
+    .service-card p {
+      color: #3b6773;
+      margin-bottom: 1.8rem;
+      line-height: 1.7;
+    }
+
+    .service-link {
+      color: var(--aqua-core);
+      font-weight: 600;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+      transition: 0.2s;
+    }
+
+    .service-link i {
+      transition: transform 0.2s;
+    }
+
+    .service-link:hover i {
+      transform: translateX(6px);
+    }
+
+    /* ----- SPECIES SHOWCASE (beautiful cards) ----- */
+    .species {
+      padding: 4rem 0 6rem 0;
+      background: linear-gradient(to bottom, #e6f7fa, #f4fbfd);
+    }
+
+    .species-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.8rem;
+      margin-top: 2.5rem;
+    }
+
+    .species-card {
+      background: white;
+      border-radius: 32px;
+      overflow: hidden;
+      box-shadow: 0 12px 24px -10px rgba(0, 56, 69, 0.1);
+      transition: all 0.3s;
+      text-align: center;
+      padding: 2rem 0.8rem 1.8rem 0.8rem;
+      border: 1px solid rgba(143, 205, 212, 0.4);
+    }
+
+    .species-card:hover {
+      transform: scale(1.02);
+      border-color: #ffb5a0;
+      box-shadow: 0 24px 36px -12px rgba(255, 138, 108, 0.2);
+    }
+
+    .species-emoji {
+      font-size: 4.5rem;
+      margin-bottom: 0.8rem;
+      display: block;
+      filter: drop-shadow(0 8px 12px rgba(0,40,50,0.1));
+    }
+
+    .species-card h4 {
+      font-size: 1.5rem;
+      color: #003845;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .species-card p {
+      color: #47707c;
+      font-size: 0.95rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .species-tag {
+      background: #e6f7fa;
+      color: var(--deep-sea);
+      font-weight: 600;
+      padding: 0.3rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      display: inline-block;
+      letter-spacing: 0.3px;
+    }
+
+    /* ----- FOOTER (simple, polished) ----- */
+    .footer {
+      background: #003845;
+      color: #c2e2e9;
+      padding: 3rem 2rem 2rem 2rem;
+      margin-top: 2rem;
+      border-radius: 40px 40px 0 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .footer-brand {
+      font-size: 1.9rem;
+      font-weight: 600;
+      font-family: Georgia, serif;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .footer-brand i {
+      color: #8fcdd4;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    .footer-links a {
+      color: #b3e5ed;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: #ff8a6c;
+    }
+
+    .footer-copy {
+      text-align: center;
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #1d5b66;
+      color: #7faeb9;
+      font-size: 0.9rem;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ----- RESPONSIVE ----- */
+    @media (max-width: 1024px) {
+      .hero-text h1 { font-size: 3rem; }
+      .orb { width: 300px; height: 300px; }
+      .service-grid { grid-template-columns: repeat(2, 1fr); }
+      .species-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .navbar { flex-direction: column; gap: 1rem; padding: 1rem; }
+      .hero-content { flex-direction: column; text-align: center; gap: 2rem; }
+      .hero-text p { margin-left: auto; margin-right: auto; }
+      .hero-cta { justify-content: center; flex-wrap: wrap; }
+      .stats { flex-direction: column; gap: 1.5rem; border-radius: 40px; padding: 2rem; }
+      .stat-item { justify-content: center; }
+      .service-grid { grid-template-columns: 1fr; }
+      .species-grid { grid-template-columns: 1fr 1fr; }
+      .footer-inner { flex-direction: column; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; gap: 1.5rem; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-text h1 { font-size: 2.2rem; }
+      .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+      .hero-cta { flex-direction: column; width: 100%; }
+      .species-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="brand">
+      <i class="fas fa-water"></i> AquaCulture
+    </div>
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Services</a>
+      <a href="#">Species</a>
+      <button class="btn-outline">Contact</button>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION (beautiful) -->
+  <section class="hero">
+    <div class="container hero-content">
+      <div class="hero-text">
+        <div class="badge"><i class="fas fa-fish" style="margin-right: 8px;"></i> SUSTAINABLE AQUACULTURE</div>
+        <h1>Harvest the <span>blue</span> future,<br> responsibly.</h1>
+        <p>Pioneering regenerative aquaculture — where pristine water, ethical farming, and thriving marine life come together in perfect balance.</p>
+        <div class="hero-cta">
+          <button class="btn-primary"><i class="fas fa-leaf"></i> Explore our farms</button>
+          <button class="btn-secondary"><i class="fas fa-play-circle"></i> Watch film</button>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="orb">
+          <!-- decorative icons are inside orb via pseudo elements + icon -->
+          <i class="fas fa-fish"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLOATING STATS BAR -->
+  <div class="container">
+    <div class="stats">
+      <div class="stat-item">
+        <i class="fas fa-water stat-icon"></i>
+        <div class="stat-text">
+          <h4>12+</h4>
+          <p>Ocean farms</p>
+        </div>
+      </div>
+      <div class="stat-item">
+        <i class="fas fa-fish stat-icon"></i>
+        <div class="stat-text">
+          <h4>28</h4>
+          <p>Native species</p>
+        </div>
+      </div>
+      <div class="stat-item">
+        <i class="fas fa-hand-holding-droplet stat-icon"></i>
+        <div class="stat-text">
+          <h4>0%</h4>
+          <p>Waste discharge</p>
+        </div>
+      </div>
+      <div class="stat-item">
+        <i class="fas fa-seedling stat-icon"></i>
+        <div class="stat-text">
+          <h4>100%</h4>
+          <p>Renewable energy</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="services">
+    <div class="container">
+      <div class="section-title">
+        <h2>Farmed with care</h2>
+        <p>From hatchery to harvest, we combine traditional knowledge with cutting‑edge marine science.</p>
+      </div>
+      <div class="service-grid">
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-fish"></i></div>
+          <h3>Finfish</h3>
+          <p>Responsibly raised sea bass, bream, and meagre in low‑density, high‑welfare pens.</p>
+          <a href="#" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-leaf"></i></div>
+          <h3>Seaweed & Shellfish</h3>
+          <p>Regenerative IMTA systems — kelp, oysters, and mussels filter the water as they grow.</p>
+          <a href="#" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-microscope"></i></div>
+          <h3>Research & Hatchery</h3>
+          <p>Breeding programmes and closed‑loop hatcheries for resilient, native species.</p>
+          <a href="#" class="service-link">Learn more <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPECIES SHOWCASE -->
+  <section class="species">
+    <div class="container">
+      <div class="section-title">
+        <h2>Meet our ocean residents</h2>
+        <p>Native species, raised with respect for their natural behaviour and habitat.</p>
+      </div>
+      <div class="species-grid">
+        <div class="species-card">
+          <span class="species-emoji">🐟</span>
+          <h4>European Sea Bass</h4>
+          <p>Delicate flavour, firm texture, rich in omega‑3.</p>
+          <span class="species-tag">Native</span>
+        </div>
+        <div class="species-card">
+          <span class="species-emoji">🦪</span>
+          <h4>Pacific Oyster</h4>
+          <p>Filter feeders that improve water clarity.</p>
+          <span class="species-tag">Regenerative</span>
+        </div>
+        <div class="species-card">
+          <span class="species-emoji">🌿</span>
+          <h4>Sugar Kelp</h4>
+          <p>Carbon‑capturing seaweed, rich in minerals.</p>
+          <span class="species-tag">Climate‑positive</span>
+        </div>
+        <div class="species-card">
+          <span class="species-emoji">🦞</span>
+          <h4>European Lobster</h4>
+          <p>Slow‑grown, sustainable, and utterly delicious.</p>
+          <span class="species-tag">Premium</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <i class="fas fa-water"></i> AquaCulture
+      </div>
+      <div class="footer-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Sustainability</a>
+        <a href="#">Contact</a>
+      </div>
+      <div style="color: #8fcdd4; font-size: 1.3rem; display: flex; gap: 1.5rem;">
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-linkedin"></i>
+        <i class="fab fa-youtube"></i>
+      </div>
+    </div>
+    <div class="footer-copy">
+      © 2025 AquaCulture — blue harvest. All rights reserved. <i class="fas fa-fish" style="margin-left: 6px; opacity: 0.6;"></i>
+    </div>
+  </footer>
+</body>
+</html>
