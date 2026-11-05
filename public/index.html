@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Zesty — Food Delivery</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a href="#/" class="brand">🍽️ <span>Zesty</span></a>
+    <div class="search">
+      <input id="search" type="search" placeholder="Search restaurants or dishes…" autocomplete="off" />
+    </div>
+    <button id="cartBtn" class="cart-btn" aria-label="Open cart">
+      🛒 <span>Cart</span><b id="cartCount">0</b>
+    </button>
+  </header>
+
+  <main id="app" class="container"></main>
+
+  <div id="overlay" class="overlay hidden"></div>
+
+  <aside id="drawer" class="drawer" aria-hidden="true">
+    <div class="drawer-head">
+      <h2>Your cart</h2>
+      <button id="closeCart" class="icon-btn" aria-label="Close">✕</button>
+    </div>
+    <div id="cartBody" class="drawer-body"></div>
+  </aside>
+
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-card" id="modalCard"></div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
+

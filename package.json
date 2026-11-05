@@ -1,0 +1,16 @@
+{
+  "name": "food-delivery-app",
+  "version": "1.0.0",
+  "description": "Food delivery UI + REST APIs (in-memory, no database)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
